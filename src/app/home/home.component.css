@@ -36,3 +36,55 @@
     right: 20px;
     float: right;
 }
+
+.menuDiv{
+    display: block;
+}
+
+.my-class{
+    display:block !important;
+    position: fixed;
+    z-index: 998;
+    opacity: 0.9;
+    max-width: 180px !important;
+}
+
+.my-class2{
+    left: 166px !important;
+}
+
+.menu-icon{
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 999;
+    opacity: 0.9;
+}
+
+.menu-icon button{
+    background-color: #343a40 !important;
+}
+
+.menu-icon img{
+    height: 50px;
+    width: 50px;
+}
+
+@media (max-width: 737px){
+    .menuDiv{
+        display: none;
+    }
+
+    .col-9{
+        max-width: 100%;
+    }
+
+    .right-container{
+        left: 0%;
+    }
+
+    .menu-icon{
+        display: block;
+    }
+}
