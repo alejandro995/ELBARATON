@@ -1,0 +1,38 @@
+.visible{
+    display: block !important
+}
+
+.invisible{
+    display: none
+}
+
+.left-bar{
+    height: 100%;
+    position: fixed;
+    width: 40%;
+}
+
+.right-container{
+    position: absolute;
+    left: 25%;
+}
+
+.cart-icon{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom:20px;
+    right: 20px;
+}
+
+
+.g{
+    fill: #007bff;
+    stroke: #007bff;
+}
+
+.leftButton{
+    position: absolute;
+    right: 20px;
+    float: right;
+}

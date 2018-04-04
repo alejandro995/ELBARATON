@@ -1,0 +1,97 @@
+<!-- <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
+  <div class="form-inline row-item">
+    <i *ngIf="item.children" (click)="onCollapseExpand()" aria-hidden="true" class="fa" [class.fa-caret-right]="item.collapsed"
+      [class.fa-caret-down]="!item.collapsed"></i>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" [disabled]="item.disabled"
+        [indeterminate]="item.indeterminate" />
+      <label class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
+        {{item.text}}
+      </label>
+      <label class="form-check-label">
+        <i class="fa fa-trash" aria-hidden="true" title="Remove" (click)="removeItem(item)"></i>
+      </label>
+    </div>
+  </div>
+</ng-template> -->
+<!-- <div class="row">
+    <div class="col-12">
+        Selected book id: {{ value }}
+    </div>
+  </div> -->
+<div class="container-fluid">
+  <div class="row ">
+    <div [ngClass]="{'my-class2': isClassVisible }" class="menu-icon">
+        <button type="button" class="btn btn-secondary" (click)="isClassVisible = !isClassVisible;" ><img class="menu-icon-icon" src="assets/menu.svg"></button>
+    </div>
+    <div [ngClass]="{'my-class': isClassVisible }" class="col-3 col-sm-3 text-white bg-dark p-3 left-bar menuDiv">
+      <div class="form-group">
+        <div class="d-inline-block">
+          <h2 class="pb-3">El Baraton</h2>
+          <app-select-tree-view [items]="items" [(value)]="value" (valueChange)="onValueChange($event)"></app-select-tree-view>
+          <a data-toggle="modal" data-target="#exampleModal">
+            <img class="cart-icon" src="assets/shopping-cart.svg" (click)="showCartItems()">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-3 right-container">
+      <div *ngIf="!cartIsShowing; then menu; else cart"></div>
+      <ng-template #cart>
+          <button type="button" class="btn btn-primary leftButton">Realizar pedido</button>        
+        <h3>Carrito!</h3>
+      </ng-template>
+    <ng-template #menu>      
+      <div class="row pl-4 pb-3"> Ordenar por:
+        <select class="ml-2" (change)="onItemChange($event.target.value)">
+          <option disabled>Todos</option>          
+          <option *ngFor="let item of filterBy" value="{{item.value}}" innerHTML="{{item.value}}"></option>
+        </select>
+      </div>
+      <div class="row pl-4 pb-3"> Filtrar por:
+          <input type="text" class="ml-1" [(ngModel)]="userFilter">
+        </div>
+    </ng-template>      
+      <ul class="list-unstyled">
+        <li class="d-inline-block col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let product of currentItems.products | orderBy: order:reverse:'case-insensitive' | filter:userFilter">
+          <div class="card border-primary mb-3">
+            <div class="card-header">{{product.name | uppercase}}</div>
+            <div class="card-body text-primary">
+              <p class="card-text">Precio: {{product.price}}</p>
+              <p class="card-text text-success" *ngIf="product.available==true">Stock: Disponible</p>
+              <p class="card-text text-danger" *ngIf="product.available==false">Stock: Agotado</p>
+              <p class="card-text">Cantidad: {{product.quantity}}</p>
+              <div *ngIf="!cartIsShowing; then menu; else cart"></div>              
+              <ng-template #menu>
+                <button type="button" class="btn  btn-secondary" (click)="addToCart(product)">Agregar</button>
+              </ng-template>
+              <ng-template #cart>
+                <button type="button" class="btn  btn-secondary" (click)="removeFromCart(product.id)">Eliminar</button>
+              </ng-template>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
